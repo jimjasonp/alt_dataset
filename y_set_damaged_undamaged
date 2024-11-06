@@ -3,8 +3,8 @@ import glob
 import pandas as pd
 import math
 import os
-path = r'C:\Users\jimja\Desktop\thesis\data' # use your path
-#path = r'C:\Users\jimja\Desktop\thesis\Balanced_Data'
+#path = r'C:\Users\jimja\Desktop\thesis\data' # use your path
+path = r'C:\Users\jimja\Desktop\thesis\Balanced_Data'
 dmg_list = []
 name_list = []
 
@@ -53,8 +53,8 @@ for layer in odd_layer:
         path = path + '.csv'
         dataframe = pd.read_csv(path,sep=' |,', engine='python')
         DL = dataframe[layer]
-        df = 1 - (1-DL[0])*(1-DL[1])
-        dm = 1 - (1-DL[2])*(1-DL[3])
+        df = math.floor((1-DL[0])*10)/10
+        dm = math.floor((1-DL[1])*10)/10
         if dm ==0:
             dm_list.append('undamaged')
         else :
@@ -106,5 +106,3 @@ for layer in even_layer:
         DL2 = pd.DataFrame({'dd': dd_list})
     if layer == 'DamageLayer4':
         DL4 = pd.DataFrame({'dd': dd_list})
-
-

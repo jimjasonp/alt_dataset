@@ -43,9 +43,8 @@ for layer in odd_layer:
         path = path + '.csv'
         dataframe = pd.read_csv(path,sep=' |,', engine='python')
         DL = dataframe[layer]
-        df = 1 - (1-DL[0])*(1-DL[1])
-        dm = 1 - (1-DL[0])*(1-DL[1])
-
+        df = math.floor((DL[0])*10)/10
+        dm = math.floor((DL[1])*10)/10
         if df==0 and dm ==0:
             dtotal_list.append('clean')
             i = i+1
@@ -111,3 +110,17 @@ for i in range(0,len(layer_damage)):
             dm_df_dd_list.append('df&dm')
 
 layer_damage['total_damage_per_layer'] = dm_df_dd_list
+
+
+
+df_counter = 0
+dm_counter = 0 
+other_counter = 0
+for sample in layer_damage['Layer_1']:
+    if sample == 'df':
+        df_counter +=1
+    elif sample == 'dm':
+        dm_counter +=1
+    elif sample == 'df&dm':
+        other_counter +=1
+
