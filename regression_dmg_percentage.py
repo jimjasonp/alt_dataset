@@ -1,5 +1,5 @@
 from y_set_creator_dmg_percentage import y_set_creator
-from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev
+from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev,feature_vector
 from helper_functions import model_choice
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -16,7 +16,6 @@ damage_index = 'Damage_percentage' # ['Damage_percentage', 'DamageLayer1', 'Dama
 
 X = feature[sensor_list]
 X = feature.iloc[:,:]
-
 
 y = y_set_creator(damage_index,mode)
 y = y.iloc[:,:]

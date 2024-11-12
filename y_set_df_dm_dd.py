@@ -30,6 +30,7 @@ for filename in sorted(glob.glob(os.path.join(path , "meta*"))):
     case_list.append(case)
 # ftiaxnei ena dataframe me to damage percentage kai prosthetei to index number kai kanei sort basei autou 
 dmg_data = pd.DataFrame({'dmg':dmg_list,'damage_file_name':name_list,'caseStudey':case_list})
+correct_order = dmg_data['caseStudey']
 dmg_data['dmg_index_number'] = [int(i.split('_')[-1]) for i in dmg_data['damage_file_name']]
 dmg_data = dmg_data.sort_values(by=['caseStudey'])
 
@@ -111,8 +112,6 @@ for i in range(0,len(layer_damage)):
             dm_df_dd_list.append('df&dm')
 
 layer_damage['total_damage_per_layer'] = dm_df_dd_list
-
-
 
 df_counter = 0
 dm_counter = 0 

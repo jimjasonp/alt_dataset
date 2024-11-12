@@ -5,11 +5,11 @@ from sklearn.metrics import accuracy_score,confusion_matrix
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 import pandas as pd
-from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev
+from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev,feature_vector
+from sklearn.ensemble import RandomForestClassifier
 
-
-X = sensor_stdev
-y = layer_damage['Layer_3']
+X = feature_vector
+y = dm_df_dd_list
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,shuffle=True)
@@ -28,9 +28,16 @@ X_test = scaler.transform(X_test)
 #LR.fit(X_train, y_train)
 #y_pred = LR.predict(X_test)
 
-svm = SVC(kernel='rbf')
-svm.fit(X_train, y_train)
-y_pred = svm.predict(X_test)
+#svm = SVC(C = 2 , 
+#          kernel='rbf',
+#          tol = 1e-9,
+#          cache_size=1000,
+#          max_iter=-1
+#          )
+#svm.fit(X_train, y_train)
+rf = RandomForestClassifier()
+rf.fit(X_train, y_train)
+y_pred = rf.predict(X_test)
 
 
 CM = confusion_matrix(y_test,y_pred)

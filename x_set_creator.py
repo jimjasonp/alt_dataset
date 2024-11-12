@@ -109,6 +109,7 @@ for feature in feature_list:
             sample_sensor =sensor_data_list[i][sensor]
             power_spectrum = fourier(sample_sensor)
             power_spectrum_list.append(power_spectrum)
+
             # ta apotelesmata tou fft ta metatrepw se kapoio feature   
             sensor_fft = feature_maker(feature,sensor_fft,power_spectrum)
         # tis times tou kathe feature tis pernaw se ena df 
@@ -123,3 +124,8 @@ for feature in feature_list:
         sensor_stdev = sensor_stdev.assign(**sensor_fft_df)
     elif feature =='median_high':
         sensor_median_high = sensor_median_high.assign(**sensor_fft_df)
+
+
+feature_vector = []
+for i in range(0,151):
+    feature_vector.append(power_spectrum_list[i])

@@ -61,34 +61,40 @@ plt.show()
 plt.subplot(2,3,1)
 plt.plot(power_samples[0])
 plt.title("FFT signal with delamination")
+plt.xlim(0,300)
 plt.grid(True)
 
 
 plt.subplot(2,3,2)
 plt.plot(power_samples[1])
 plt.title("FFT signal with matrix and fiber defect")
+plt.xlim(0,300)
 plt.grid(True)
 
 
 plt.subplot(2,3,3)
 plt.plot(power_samples[2])
 plt.title("FFT signal with fiber defect")
+plt.xlim(0,300)
 plt.grid(True)
 
 
 plt.subplot(2,3,4)
 plt.plot(power_samples[3])
 plt.title("FFT signal without defects")
+plt.xlim(0,300)
 plt.grid(True)
 
 plt.subplot(2,3,5)
 plt.plot(power_samples[4])
 plt.title("FFT signal with delamination matrix and fiber defects")
+plt.xlim(0,300)
 plt.grid(True)
 
 
 plt.subplot(2,3,6)
 plt.plot(power_samples[5])
 plt.title("FFT signal with matrix defect")
+plt.xlim(0,300)
 plt.grid(True)
 plt.show()
