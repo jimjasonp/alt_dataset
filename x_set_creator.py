@@ -96,6 +96,7 @@ def fourier(sample_sensor):
 
 #gia kathe feature kataskeuazo ena dataframe pou tha mpoun gia kathe sensora oi times tou feature gia kathe timeserie tou sensora
 
+power_spectrum_list = []
 for feature in feature_list:
     # h diadikasia ginetai epanalhptika gia kathe feature sto feature list
     sensor_fft_df = pd.DataFrame()
@@ -107,6 +108,7 @@ for feature in feature_list:
             #efarmozo to metasxhmatismo fourier (fft) se kathe timeserie
             sample_sensor =sensor_data_list[i][sensor]
             power_spectrum = fourier(sample_sensor)
+            power_spectrum_list.append(power_spectrum)
             # ta apotelesmata tou fft ta metatrepw se kapoio feature   
             sensor_fft = feature_maker(feature,sensor_fft,power_spectrum)
         # tis times tou kathe feature tis pernaw se ena df 

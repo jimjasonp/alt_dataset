@@ -1,4 +1,4 @@
-from y_set_df_dm_dd import layer_damage
+from y_set_df_dm_dd import layer_damage,dm_df_dd_list
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score,confusion_matrix
@@ -20,14 +20,15 @@ X_test = scaler.transform(X_test)
 #LR = LogisticRegression(
 #                tol=0.00000001,
 #                C=0.7,
-#                class_weight={'df&dm&dd':1,'df&dm':9},
+#                class_weight={'df&dm':2,'df':2,'dm':1,'clean':1},
 #                max_iter=100000,
 #                warm_start=True
 #)
+
 #LR.fit(X_train, y_train)
 #y_pred = LR.predict(X_test)
 
-svm = SVC()
+svm = SVC(kernel='rbf')
 svm.fit(X_train, y_train)
 y_pred = svm.predict(X_test)
 
@@ -38,7 +39,6 @@ accuracy = accuracy_score(y_test, y_pred)
 print('===============')
 print("Accuracy:", accuracy)
 
-print(y_test)
 
 
 

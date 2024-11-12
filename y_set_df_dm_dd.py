@@ -12,7 +12,7 @@ layer_damage = pd.DataFrame()
 path = r'C:\Users\jimja\Desktop\thesis\Balanced_Data'
 dmg_list = []
 name_list = []
-
+case_list = []
 
 damage_results_list = ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
 
@@ -21,15 +21,17 @@ damage_result = 'Damage_percentage'
 for filename in sorted(glob.glob(os.path.join(path , "meta*"))):
     df = pd.read_csv(filename,sep=' |,', engine='python').dropna()
     dmg_perc = df[f'{damage_result}']
+    case = df['caseStudey'][0]
     if len(dmg_perc)== 1:
          dmg_perc = dmg_perc[0]
     dmg_list.append(dmg_perc)
     filename = filename.removesuffix('.csv')
     name_list.append(filename)
+    case_list.append(case)
 # ftiaxnei ena dataframe me to damage percentage kai prosthetei to index number kai kanei sort basei autou 
-dmg_data = pd.DataFrame({'dmg':dmg_list,'damage_file_name':name_list})
+dmg_data = pd.DataFrame({'dmg':dmg_list,'damage_file_name':name_list,'caseStudey':case_list})
 dmg_data['dmg_index_number'] = [int(i.split('_')[-1]) for i in dmg_data['damage_file_name']]
-dmg_data = dmg_data.sort_values(by=['dmg_index_number'])
+dmg_data = dmg_data.sort_values(by=['caseStudey'])
 
 
 
@@ -43,8 +45,8 @@ for layer in odd_layer:
         path = path + '.csv'
         dataframe = pd.read_csv(path,sep=' |,', engine='python')
         DL = dataframe[layer]
-        df = math.floor((DL[0])*10)/10
-        dm = math.floor((DL[1])*10)/10
+        df = DL[0]
+        dm = DL[1]
         if df==0 and dm ==0:
             dtotal_list.append('clean')
             i = i+1
@@ -69,8 +71,7 @@ for layer in even_layer:
         path = path + '.csv'
         dataframe = pd.read_csv(path,sep=' |,', engine='python')
         DL = dataframe[layer]
-        dd = 1 - DL[0]
-        dd = math.floor(dd*10)/10
+        dd = DL[0]
 
         if dd ==0:
             dd_list.append('clean')
@@ -124,3 +125,9 @@ for sample in layer_damage['Layer_1']:
     elif sample == 'df&dm':
         other_counter +=1
 
+
+#with pd.option_context('display.max_rows', None,
+#                       'display.max_columns', None,
+#                       'display.precision', 3,
+#                       ):
+#    print(dmg_data)
