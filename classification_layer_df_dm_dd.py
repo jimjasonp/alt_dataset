@@ -8,7 +8,7 @@ import pandas as pd
 from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev,feature_vector
 from sklearn.ensemble import RandomForestClassifier
 
-X = feature_vector
+X = sensor_stdev
 y = dm_df_dd_list
 
 
@@ -16,6 +16,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,shuffle=
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
+
 
 #LR = LogisticRegression(
 #                tol=0.00000001,
@@ -28,16 +29,31 @@ X_test = scaler.transform(X_test)
 #LR.fit(X_train, y_train)
 #y_pred = LR.predict(X_test)
 
-#svm = SVC(C = 2 , 
-#          kernel='rbf',
-#          tol = 1e-9,
-#          cache_size=1000,
-#          max_iter=-1
-#          )
-#svm.fit(X_train, y_train)
-rf = RandomForestClassifier()
-rf.fit(X_train, y_train)
-y_pred = rf.predict(X_test)
+
+
+
+
+svm = SVC(C = 1 , 
+          kernel='poly',
+          #degree=4,
+          tol = 1e-12,
+          gamma=1,
+          coef0=1,
+          probability=True,
+          shrinking=True,
+          class_weight=None, #balanced,None
+          cache_size=5000,
+          max_iter=-1
+          )
+svm.fit(X_train, y_train)
+y_pred = svm.predict(X_test)
+
+
+
+
+#rf = RandomForestClassifier()
+#rf.fit(X_train, y_train)
+#y_pred = rf.predict(X_test)
 
 
 CM = confusion_matrix(y_test,y_pred)
