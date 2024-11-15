@@ -21,7 +21,7 @@ X_test = scaler.transform(X_test)
 #LR = LogisticRegression(
 #                tol=0.00000001,
 #                C=0.7,
-#                class_weight={'df&dm':2,'df':2,'dm':1,'clean':1},
+#                class_weight={'df&dm':2,'df':2,'dm':2,'clean':2,'df&dm&dd':1},
 #                max_iter=100000,
 #                warm_start=True
 #)
@@ -41,7 +41,7 @@ svm = SVC(C = 1 ,
           coef0=1,
           probability=True,
           shrinking=True,
-          class_weight=None, #balanced,None
+          class_weight={'df&dm':2,'df':2,'dm':2,'clean':1,'df&dm&dd':1},
           cache_size=5000,
           max_iter=-1
           )
