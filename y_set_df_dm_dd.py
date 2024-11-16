@@ -87,31 +87,27 @@ for layer in even_layer:
 
 layer_damage = layer_damage.assign(**DL1,**DL2,**DL3,**DL4,**DL5)
 
-
 dm_df_dd_list = []
+
 for i in range(0,len(layer_damage)):
-    if layer_damage['Layer_1'][i] == 'df' and layer_damage['Layer_3'][i] == 'df' and layer_damage['Layer_5'][i] == 'df':
-        if layer_damage['Layer_2'][i] == 'dd' or layer_damage['Layer_4'][i] == 'dd':
-            dm_df_dd_list.append('df&dd')
-        else :
-            dm_df_dd_list.append('df')
-    elif layer_damage['Layer_1'][i] == 'dm' and layer_damage['Layer_3'][i] == 'dm' and layer_damage['Layer_5'][i] == 'dm':
-        if layer_damage['Layer_2'][i] == 'dd' or layer_damage['Layer_4'][i] == 'dd':
-            dm_df_dd_list.append('dm&dd')
-        else :
-            dm_df_dd_list.append('dm')
-    elif layer_damage['Layer_1'][i] == 'clean' and layer_damage['Layer_3'][i] == 'clean' and layer_damage['Layer_5'][i] == 'clean':
+    if layer_damage['Layer_1'][i] == 'clean' and layer_damage['Layer_3'][i] == 'clean' and layer_damage['Layer_5'][i] == 'clean':
         if layer_damage['Layer_2'][i] == 'dd' or layer_damage['Layer_4'][i] == 'dd':
             dm_df_dd_list.append('dd')
         else :
             dm_df_dd_list.append('clean')
-    else:
+    elif layer_damage['Layer_1'][i] != 'clean' or layer_damage['Layer_3'][i] != 'clean' or layer_damage['Layer_5'][i] != 'clean':
         if layer_damage['Layer_2'][i] == 'dd' or layer_damage['Layer_4'][i] == 'dd':
-            dm_df_dd_list.append('df&dm&dd')
+            dm_df_dd_list.append('ola')
         else :
-            dm_df_dd_list.append('df&dm')
+            if layer_damage['Layer_1'][i] == 'df' or layer_damage['Layer_3'][i] == 'df' or layer_damage['Layer_5'][i] == 'df':
+                dm_df_dd_list.append('df')
+            else:
+                dm_df_dd_list.append('dm')
+
+
 
 layer_damage['total_damage_per_layer'] = dm_df_dd_list
+
 
 df_counter = 0
 dm_counter = 0 
@@ -123,10 +119,3 @@ for sample in layer_damage['Layer_1']:
         dm_counter +=1
     elif sample == 'df&dm':
         other_counter +=1
-
-
-#with pd.option_context('display.max_rows', None,
-#                       'display.max_columns', None,
-#                       'display.precision', 3,
-#                       ):
-#    print(dmg_data)

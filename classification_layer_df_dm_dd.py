@@ -8,9 +8,15 @@ import pandas as pd
 from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev,feature_vector
 from sklearn.ensemble import RandomForestClassifier
 
-X = sensor_stdev
-y = dm_df_dd_list
+#X = sensor_stdev
+#y = dm_df_dd_list
 
+
+#####test###########
+from y_set_single_defect import data
+y = data['defects']
+X = data.loc[:, data.columns != 'defects']
+######################
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,shuffle=True)
 scaler = StandardScaler()
@@ -33,7 +39,8 @@ X_test = scaler.transform(X_test)
 
 
 
-svm = SVC(C = 1 , 
+svm = SVC(
+          C = 1 , 
           kernel='poly',
           #degree=4,
           tol = 1e-12,
@@ -41,7 +48,6 @@ svm = SVC(C = 1 ,
           coef0=1,
           probability=True,
           shrinking=True,
-          class_weight={'df&dm':2,'df':2,'dm':2,'clean':1,'df&dm&dd':1},
           cache_size=5000,
           max_iter=-1
           )
@@ -50,19 +56,8 @@ y_pred = svm.predict(X_test)
 
 
 
-
-#rf = RandomForestClassifier()
-#rf.fit(X_train, y_train)
-#y_pred = rf.predict(X_test)
-
-
 CM = confusion_matrix(y_test,y_pred)
 print(CM)
 accuracy = accuracy_score(y_test, y_pred)
 print('===============')
 print("Accuracy:", accuracy)
-
-
-
-
-
