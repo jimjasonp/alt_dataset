@@ -6,8 +6,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 import pandas as pd
 from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev,feature_vector
-from sklearn.ensemble import RandomForestClassifier
-
 #X = sensor_stdev
 #y = dm_df_dd_list
 
@@ -41,8 +39,7 @@ X_test = scaler.transform(X_test)
 
 svm = SVC(
           C = 1 , 
-          kernel='poly',
-          #degree=4,
+          kernel='rbf',
           tol = 1e-12,
           gamma=1,
           coef0=1,
