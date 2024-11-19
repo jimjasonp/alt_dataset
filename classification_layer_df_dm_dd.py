@@ -9,7 +9,6 @@ from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev
 #X = sensor_stdev
 #y = dm_df_dd_list
 
-
 #####test###########
 from y_set_single_defect import data
 y = data['defects']
