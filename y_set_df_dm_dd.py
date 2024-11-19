@@ -119,3 +119,5 @@ for sample in layer_damage['Layer_1']:
         dm_counter +=1
     elif sample == 'df&dm':
         other_counter +=1
+
+print(dm_df_dd_list[0])

@@ -130,4 +130,4 @@ feature_vector = []
 for i in range(0,151):
     feature_vector.append(power_spectrum_list[i])
 
-print(len(feature_vector))
+
