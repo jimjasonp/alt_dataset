@@ -127,7 +127,5 @@ for feature in feature_list:
 
 
 feature_vector = []
-for i in range(0,151):
+for i in range(302,453):
     feature_vector.append(power_spectrum_list[i])
-
-

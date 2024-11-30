@@ -107,6 +107,7 @@ for feature in feature_list:
         for i in range(0,len(sensor_data_list)):
             #efarmozo to metasxhmatismo fourier (fft) se kathe timeserie
             sample_sensor =sensor_data_list[i][sensor]
+            #power_spectrum = sample_sensor
             power_spectrum = fourier(sample_sensor)
             power_spectrum_list.append(power_spectrum)
 
@@ -145,6 +146,4 @@ for i in range(302,453):
     sensor4_vector.append(useful_feature[i])
 
 raw_fft_feature_vector = pd.DataFrame({'s2':sensor2_vector,'s3':sensor3_vector,'s4':sensor4_vector})
-print(raw_fft_feature_vector)
-
 

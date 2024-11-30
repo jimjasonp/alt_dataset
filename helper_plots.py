@@ -7,100 +7,78 @@ sensor_samples = [sensor_data_list[100]['s2'], #dd
          sensor_data_list[4]['s2'], # df
          sensor_data_list[0]['s2'], #clean
          sensor_data_list[149]['s2'],# df dm dd
-         sensor_data_list[65]['s2']] #dm
+         sensor_data_list[65]['s2'],
 
-power_samples = [power_spectrum_list[100], ##dd
-                 power_spectrum_list[3], # df dm
-                 power_spectrum_list[4], # df
+         sensor_data_list[100]['s3'], #dd
+         sensor_data_list[3]['s3'], #df dm
+         sensor_data_list[4]['s3'], # df
+         sensor_data_list[0]['s3'], #clean
+         sensor_data_list[149]['s3'],# df dm dd
+         sensor_data_list[65]['s3'],
+        
+         sensor_data_list[100]['s4'], #dd
+         sensor_data_list[3]['s4'], #df dm
+         sensor_data_list[4]['s4'], # df
+         sensor_data_list[0]['s4'], #clean
+         sensor_data_list[149]['s4'],# df dm dd
+         sensor_data_list[65]['s4'] ]#dm
+
+power_samples = [power_spectrum_list[251], ##dd
+                 power_spectrum_list[254], # df dm
+                 power_spectrum_list[255], # df
+                 power_spectrum_list[151], #clean
+                 power_spectrum_list[300], # df dm dd
+                 power_spectrum_list[216],
+
+                 power_spectrum_list[100], ##dd
+                 power_spectrum_list[103], # df dm
+                 power_spectrum_list[104], # df
                  power_spectrum_list[0], #clean
                  power_spectrum_list[149], # df dm dd
-                 power_spectrum_list[65]] # dm
+                 power_spectrum_list[65],
+
+                 power_spectrum_list[402], ##dd
+                 power_spectrum_list[405], # df dm
+                 power_spectrum_list[406], # df
+                 power_spectrum_list[302], #clean
+                 power_spectrum_list[451], # df dm dd
+                 power_spectrum_list[367]] # dm
+
+raw_titles = ["Raw signal with delamination",
+          "Raw signal with matrix and fiber defect",
+          "Raw signal with fiber defect",
+          "Raw signal without defects",
+          "Raw signal with delamination matrix and fiber defects",
+          "Raw signal with matrix defect"]
+
+
+fft_titles = ["FFT signal with delamination",
+          "FFT signal with matrix and fiber defect",
+          "FFT signal with fiber defect",
+          "FFT signal without defects",
+          "FFT signal with delamination matrix and fiber defects",
+          "FFT signal with matrix defect"]
+
 
 ### Raw signal
 
-
-plt.subplot(2,3,1)
-plt.plot(sensor_samples[0])
-plt.title("Raw signal with delamination")
-plt.grid(True)
-
-
-plt.subplot(2,3,2)
-plt.plot(sensor_samples[1])
-plt.title("Raw signal with matrix and fiber defect")
-plt.grid(True)
-
-
-plt.subplot(2,3,3)
-plt.plot(sensor_samples[2])
-plt.title("Raw signal with fiber defect")
-plt.grid(True)
-
-
-plt.subplot(2,3,4)
-plt.plot(sensor_samples[3])
-plt.title("Raw signal without defects")
-plt.grid(True)
-
-plt.subplot(2,3,5)
-plt.plot(sensor_samples[4])
-plt.title("Raw signal with delamination matrix and fiber defects")
-plt.grid(True)
-
-
-plt.subplot(2,3,6)
-plt.plot(sensor_samples[5])
-plt.title("Raw signal with matrix defect")
-plt.grid(True)
+for i in range(0,len(fft_titles)):
+    plt.subplot(2,3,i+1)
+    plt.plot(sensor_samples[i])
+    plt.plot(sensor_samples[i+6])
+    plt.plot(sensor_samples[i+12])
+    plt.title(raw_titles[i])
+    plt.grid(True)
 plt.show()
 
 
-# FFT
-
-
-plt.subplot(2,3,1)
-plt.plot(power_samples[0])
-plt.title("FFT signal with delamination")
-plt.xlim(0,750)
-plt.yscale("log")
-plt.grid(True)
-
-
-plt.subplot(2,3,2)
-plt.plot(power_samples[1])
-plt.title("FFT signal with matrix and fiber defect")
-plt.xlim(0,750)
-plt.yscale("log")
-plt.grid(True)
-
-
-plt.subplot(2,3,3)
-plt.plot(power_samples[2])
-plt.title("FFT signal with fiber defect")
-plt.yscale("log")
-plt.xlim(0,750)
-plt.grid(True)
-
-
-plt.subplot(2,3,4)
-plt.plot(power_samples[3])
-plt.title("FFT signal without defects")
-plt.yscale("log")
-plt.xlim(0,750)
-plt.grid(True)
-
-plt.subplot(2,3,5)
-plt.plot(power_samples[4])
-plt.title("FFT signal with delamination matrix and fiber defects")
-plt.yscale("log")
-plt.xlim(0,750)
-plt.grid(True)
-
-
-plt.subplot(2,3,6)
-plt.plot(power_samples[5])
-plt.title("FFT signal with matrix defect")
-plt.yscale("log")
-plt.xlim(0,750)
-plt.grid(True)
+for i in range(0,len(fft_titles)):
+    plt.subplot(2,3,i+1)
+    plt.plot(power_samples[i])
+    plt.plot(power_samples[i+6])
+    plt.plot(power_samples[i+12])
+    plt.yscale('log')
+    plt.xlim(0,350)
+    plt.title(fft_titles[i])
+    plt.grid(True)
 plt.show()
